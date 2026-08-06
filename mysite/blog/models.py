@@ -14,6 +14,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-pk']
+
 
 class Comment(models.Model):
     post = models.ForeignKey(to="Post", on_delete=models.CASCADE)
