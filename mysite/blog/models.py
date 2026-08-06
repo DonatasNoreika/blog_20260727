@@ -11,6 +11,10 @@ class Post(models.Model):
                                on_delete=models.SET_NULL,
                                null=True, blank=True)
 
+    def comments_count(self):
+        return self.comments.count()
+
+
     def __str__(self):
         return self.title
 
@@ -19,7 +23,9 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(to="Post", on_delete=models.CASCADE)
+    post = models.ForeignKey(to="Post",
+                             on_delete=models.CASCADE,
+                             related_name="comments")
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(to=User,
