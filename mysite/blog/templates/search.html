@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Paieškos rezultatai</h1>
+<p>Įrašai, rasti pagal raktažodį "{{ query }}":</p>
+
+{% for post in posts %}
+<p><a href="{% url 'post' post.pk %}">{{ post }}</a></p>
+{% endfor %}
+
+{% endblock %}
