@@ -34,6 +34,8 @@ ALLOWED_HOSTS = ALLOWED_HOSTS
 
 INSTALLED_APPS = [
     'blog',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,6 +126,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/media')
 
 MEDIA_URL = '/media/'
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
