@@ -10,6 +10,7 @@ class Post(models.Model):
     author = models.ForeignKey(to=User,
                                on_delete=models.SET_NULL,
                                null=True, blank=True)
+    cover = models.ImageField(upload_to='covers', null=True, blank=True)
 
     def comments_count(self):
         return self.comments.count()
