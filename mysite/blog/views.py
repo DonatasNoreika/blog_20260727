@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Comment
 from django.views import generic
 from django.db.models import Q
 
@@ -47,3 +47,12 @@ class MyPostListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Post.objects.filter(author=self.request.user)
+
+
+class MyCommentListView(LoginRequiredMixin, generic.ListView):
+    model = Comment
+    template_name = "my_comments.html"
+    context_object_name = "comments"
+
+    def get_queryset(self):
+        return Comment.objects.filter(author=self.request.user)
