@@ -16,7 +16,7 @@
     <figure class="mb-4"><img class="img-fluid rounded" src="{{ post.cover.url }}" alt="..." /></figure>
     {% endif %}    <!-- Post content-->
     <section class="mb-5">
-        <p class="fs-5">{{ post.content | truncatewords:30 }}</p>
+        <p class="fs-5">{{ post.content | truncatewords:30 | safe }}</p>
         <p><a href="{% url 'post' post.pk %}">Read More</a></p>
         <p>Comments: {{ post.comments_count }}</p>
     </section>
