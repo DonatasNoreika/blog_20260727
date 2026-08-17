@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from .models import Post
 from django.views import generic
@@ -38,3 +39,11 @@ def search(request):
     }
     return render(request, template_name="search.html", context=context)
 
+
+class MyPostListView(LoginRequiredMixin, generic.ListView):
+    model = Post
+    template_name = "my_posts.html"
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        return Post.objects.filter(author=self.request.user)
