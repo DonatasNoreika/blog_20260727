@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from .models import Post, Comment
+from django.urls import reverse_lazy
+
+from .models import Post, Comment, CustomUser
 from django.views import generic
 from django.db.models import Q
 
@@ -56,3 +58,13 @@ class MyCommentListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Comment.objects.filter(author=self.request.user)
+
+
+class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = CustomUser
+    fields = ['first_name', 'last_name', 'email', 'photo']
+    template_name = "profile.html"
+    success_url = reverse_lazy('profile')
+
+    def get_object(self, queryset = ...):
+        return self.request.user

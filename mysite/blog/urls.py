@@ -7,4 +7,5 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('myposts/', views.MyPostListView.as_view(), name="my_posts"),
     path('mycomments/', views.MyCommentListView.as_view(), name="my_comments"),
+    path('profile/', views.UserUpdateView.as_view(), name="profile"),
 ]
