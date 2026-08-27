@@ -1,10 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-
 from .models import Post, Comment, CustomUser
 from django.views import generic
 from django.db.models import Q
+# from django.contrib.auth.forms import UserCreationForm
+from .forms import CustomUserCreateForm
 
 # Create your views here.
 # def posts(request):
@@ -58,6 +59,12 @@ class MyCommentListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Comment.objects.filter(author=self.request.user)
+
+
+class UserCreateView(generic.CreateView):
+    form_class = CustomUserCreateForm
+    template_name = "signup.html"
+    success_url = reverse_lazy('login')
 
 
 class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
