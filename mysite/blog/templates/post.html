@@ -23,6 +23,11 @@
     <section class="mb-5">
         <p class="fs-5 mb-4">{{ post.content | safe }}</p>
         <p>Comments: {{ post.comments_count }}</p>
+        {% if post.author == user %}
+        <div>
+            <a class="btn btn-warning" href="{% url 'post_update' post.pk %}">Redaguoti</a>
+        </div>
+        {% endif %}
     </section>
 </article>
 
