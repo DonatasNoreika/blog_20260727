@@ -26,6 +26,7 @@
         {% if post.author == user %}
         <div>
             <a class="btn btn-warning" href="{% url 'post_update' post.pk %}">Redaguoti</a>
+            <a class="btn btn-danger" href="{% url 'post_delete' post.pk %}">Ištrinti</a>
         </div>
         {% endif %}
     </section>
