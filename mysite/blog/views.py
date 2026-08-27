@@ -20,7 +20,7 @@ class PostListView(generic.ListView):
     model = Post
     template_name = "posts.html"
     context_object_name = "posts"
-    paginate_by = 2
+    paginate_by = 5
 
 
 class PostDetailView(generic.DetailView):

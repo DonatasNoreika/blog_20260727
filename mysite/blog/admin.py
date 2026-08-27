@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, CustomUser
+from django.contrib.auth.admin import UserAdmin
 
 class CommentInLine(admin.TabularInline):
     model = Comment
@@ -10,5 +11,10 @@ class PostAdmin(admin.ModelAdmin):
     inlines = [CommentInLine]
 
 
-# Register your models here.
+class CustomUserAdmin(UserAdmin):
+    fieldsets = UserAdmin.fieldsets + (
+        ('Additional Info', {'fields': ('photo',)}),
+    )
+
 admin.site.register(Post, PostAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
