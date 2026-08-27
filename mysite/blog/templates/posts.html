@@ -9,7 +9,12 @@
         <!-- Post title-->
         <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
         <!-- Post meta content-->
-        <div class="text-muted fst-italic mb-2">Posted on {{ post.date | date:"Y-m-d H:m" }} by {{ post.author }}</div>
+        <div class="text-muted fst-italic mb-2">
+            {% if post.author.photo %}
+                <img class="rounded-circle" src="{{ post.author.photo.url }}" width="30px">
+            {% endif %}
+            {{ post.author }}, {{ post.date | date:"Y-m-d H:m" }}
+        </div>
     </header>
     <!-- Preview image figure-->
     {% if post.cover %}
