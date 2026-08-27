@@ -94,3 +94,16 @@ class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def get_object(self, queryset = ...):
         return self.request.user
+
+
+class PostCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Post
+    fields = ['title', 'content', 'cover']
+    template_name = "form.html"
+    success_url = reverse_lazy("posts")
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.save()
+        return super().form_valid(form)
+
