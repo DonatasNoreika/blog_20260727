@@ -11,7 +11,12 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
-from .my_settings import SECRET_KEY, DEBUG, ALLOWED_HOSTS
+from .my_settings import (SECRET_KEY,
+                          DEBUG,
+                          ALLOWED_HOSTS,
+                          STATICFILES_DIRS,
+                          STATIC_ROOT,
+                          STATIC_URL)
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -121,7 +126,9 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_ROOT = STATIC_ROOT
+STATICFILES_DIRS = STATICFILES_DIRS
+STATIC_URL = STATIC_URL
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/media')
 
